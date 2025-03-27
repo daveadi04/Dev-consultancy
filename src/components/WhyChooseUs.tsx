@@ -13,7 +13,7 @@ const WhyChooseUs = () => {
     {
       icon: <FaUserTie size={40} className="text-blue-700" />,
       title: "Expertise & Experience",
-      description: "With over 10 years of experience in Angel Broking & Motilal Oswal, we bring deep industry knowledge and market expertise to every client relationship."
+      description: "With over 20 years of experience in Angel Broking & Motilal Oswal, we bring deep industry knowledge and market expertise to every client relationship."
     },
     {
       icon: <FaRegLightbulb size={40} className="text-blue-700" />,
@@ -133,7 +133,7 @@ const WhyChooseUs = () => {
             />
             <div className="text-left">
               <div className="font-semibold text-gray-800 dark:text-white">Rajesh Sharma</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Client for 3 years</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Client for 5 years</div>
             </div>
           </div>
         </motion.div>

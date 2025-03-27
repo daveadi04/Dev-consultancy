@@ -6,86 +6,85 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa'
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
     phone: '',
-    message: '',
-    service: 'Select a service'
+    service: '',
+    message: ''
   });
 
   const [formStatus, setFormStatus] = useState({
-    submitted: false,
-    error: false,
+    isSubmitting: false,
+    isSuccess: false,
+    isError: false,
     message: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
-    });
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate form
-    if (!formData.name || !formData.email || !formData.phone || !formData.message || formData.service === 'Select a service') {
-      setFormStatus({
-        submitted: true,
-        error: true,
-        message: 'Please fill all the fields'
-      });
-      return;
-    }
-
-    // Simple email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setFormStatus({
-        submitted: true,
-        error: true,
-        message: 'Please enter a valid email address'
-      });
-      return;
-    }
-
-    // In a real application, you would submit the form data to your backend here
-    
-    // Simulate success
     setFormStatus({
-      submitted: true,
-      error: false,
-      message: 'Thank you for your message! We will get back to you soon.'
+      isSubmitting: true,
+      isSuccess: false,
+      isError: false,
+      message: ''
     });
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      service: 'Select a service'
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormStatus({
+          isSubmitting: false,
+          isSuccess: true,
+          isError: false,
+          message: 'Thank you! We will get back to you soon.'
+        });
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setFormStatus({
+        isSubmitting: false,
+        isSuccess: false,
+        isError: true,
+        message: 'Failed to send message. Please try again later.'
+      });
+    }
   };
 
   return (
-    <section id="contact" className="relative py-20 bg-gray-50 dark:bg-gray-900">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
-        }}
-      >
-        <div className="absolute inset-0 bg-blue-900/90 dark:bg-gray-900/95"></div>
+    <section id="contact" className="relative py-20 text-white overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
+        <div className="absolute inset-0 bg-[url('/assets/pattern.svg')] opacity-20"></div>
       </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+      <div className="container mx-auto px-4 relative">
+        <div className="text-center mb-12">
           <motion.h2 
-            className="text-3xl font-bold mb-2 text-white"
+            className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -93,233 +92,201 @@ const ContactSection = () => {
           >
             Get In Touch
           </motion.h2>
-          <motion.div 
-            className="w-20 h-1 bg-yellow-500 mx-auto mb-6"
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          ></motion.div>
-          <motion.p 
-            className="text-lg text-gray-200 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Have questions about our services? Schedule a free consultation or reach out to us directly.
-          </motion.p>
+          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-6"></div>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Ready to transform your financial future? Schedule a free consultation with our expert team or reach out directly.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Form */}
           <motion.div 
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8"
-            initial={{ opacity: 0, x: -30 }}
+            className="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl"
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Free Consultation</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-800 border-b border-gray-200 pb-4">Free Investment Consultation</h3>
             
-            {formStatus.submitted && (
-              <div className={`p-4 mb-6 rounded-md ${formStatus.error ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300' : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'}`}>
+            {formStatus.isSuccess && (
+              <div className="bg-green-100 text-green-700 p-4 rounded-lg mb-6">
                 {formStatus.message}
               </div>
             )}
             
+            {formStatus.isError && (
+              <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
+                {formStatus.message}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label className="block text-gray-700 dark:text-gray-300 mb-2" htmlFor="name">
-                  Full Name *
-                </label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  value={formData.name}
+                <label htmlFor="fullName" className="block text-gray-700 mb-2">Full Name *</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700"
                   placeholder="Your full name"
+                  required
                 />
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-gray-700 dark:text-gray-300 mb-2" htmlFor="email">
-                    Email Address *
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                  <label htmlFor="email" className="block text-gray-700 mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700"
                     placeholder="Your email"
+                    required
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 dark:text-gray-300 mb-2" htmlFor="phone">
-                    Phone Number *
-                  </label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
+                  <label htmlFor="phone" className="block text-gray-700 mb-2">Phone Number *</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700"
                     placeholder="Your phone number"
+                    required
                   />
                 </div>
               </div>
-              
+
               <div className="mb-4">
-                <label className="block text-gray-700 dark:text-gray-300 mb-2" htmlFor="service">
-                  Service of Interest *
-                </label>
-                <select 
-                  id="service" 
-                  name="service" 
+                <label htmlFor="service" className="block text-gray-700 mb-2">Service of Interest *</label>
+                <select
+                  id="service"
+                  name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700"
+                  required
                 >
-                  <option disabled>Select a service</option>
-                  <option>Investment Planning</option>
-                  <option>Portfolio Management</option>
-                  <option>Trading Consultation</option>
-                  <option>Tax & Wealth Advisory</option>
-                  <option>Stock Market Training</option>
+                  <option value="">Select a service</option>
+                  <option value="Investment Planning">Investment Planning</option>
+                  <option value="Portfolio Management">Portfolio Management</option>
+                  <option value="Trading Consultation">Trading Consultation</option>
+                  <option value="Tax Advisory">Tax Advisory</option>
+                  <option value="Stock Market Training">Stock Market Training</option>
                 </select>
               </div>
-              
+
               <div className="mb-6">
-                <label className="block text-gray-700 dark:text-gray-300 mb-2" htmlFor="message">
-                  Message *
-                </label>
-                <textarea 
-                  id="message" 
-                  name="message" 
+                <label htmlFor="message" className="block text-gray-700 mb-2">Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600 focus:outline-none focus:border-blue-500 h-32 resize-none"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700"
+                  rows={4}
                   placeholder="Tell us about your financial goals or any specific questions you have"
+                  required
                 ></textarea>
               </div>
-              
-              <button 
-                type="submit" 
-                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-md transition-colors"
+
+              <button
+                type="submit"
+                disabled={formStatus.isSubmitting}
+                className={`w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 px-6 rounded-lg font-semibold
+                  ${formStatus.isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:from-blue-700 hover:to-blue-900'} 
+                  transition duration-300 shadow-lg`}
               >
-                Schedule Free Consultation
+                {formStatus.isSubmitting ? 'Sending...' : 'Schedule Free Consultation'}
               </button>
-              
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
-                We respect your privacy and will never share your information.
+
+              <p className="text-sm text-gray-600 mt-4 text-center">
+                We respect your privacy and adhere to strict confidentiality standards.
               </p>
             </form>
           </motion.div>
-          
+
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="bg-blue-700 rounded-xl shadow-lg p-8 text-white mb-8">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+          <div>
+            <motion.div 
+              className="bg-gradient-to-br from-blue-900 to-blue-950 rounded-xl p-8 shadow-2xl mb-8 border border-blue-800/20"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">Contact Information</h3>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-blue-600 p-3 rounded-md mr-4">
-                    <FaPhone className="text-white" />
-                  </div>
+                  <FaPhone className="text-2xl text-yellow-500 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Phone</h4>
-                    <a href="tel:+918655364812" className="text-blue-100 hover:text-white transition-colors">
-                      +91 8655364812
-                    </a>
+                    <p>+91 8655364812</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-blue-600 p-3 rounded-md mr-4">
-                    <FaEnvelope className="text-white" />
-                  </div>
+                  <FaEnvelope className="text-2xl text-yellow-500 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <a href="mailto:devdave_2012@gmail.com" className="text-blue-100 hover:text-white transition-colors">
-                      devdave_2012@gmail.com
-                    </a>
+                    <p>devdave2012@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-blue-600 p-3 rounded-md mr-4">
-                    <FaMapMarkerAlt className="text-white" />
-                  </div>
+                  <FaMapMarkerAlt className="text-2xl text-yellow-500 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Office Address</h4>
-                    <a 
-                      href="https://www.google.com/maps/search/?api=1&query=2HW2%2B8R2%2C+Memnagar+Rd%2C+Sarvottam+Nagar+Society%2C+Navrangpura%2C+Ahmedabad%2C+Gujarat+380014%2C+India"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-100 hover:text-white transition-colors"
-                    >
+                    <p>
                       2HW2+8R2, Memnagar Rd,<br />
                       Sarvottam Nagar Society,<br />
                       Navrangpura, Ahmedabad,<br />
                       Gujarat 380014, India
-                    </a>
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-blue-600 p-3 rounded-md mr-4">
-                    <FaWhatsapp className="text-white" />
-                  </div>
+                  <FaWhatsapp className="text-2xl text-yellow-500 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">WhatsApp</h4>
                     <a 
                       href="https://wa.me/918655364812"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-100 hover:text-white transition-colors"
+                      className="hover:text-yellow-500 transition duration-300"
                     >
                       Chat on WhatsApp
                     </a>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Map */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Our Location</h3>
-              <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
-                <iframe 
-                  title="Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.8889088636604!2d72.55739797599761!3d23.03173001569939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84c0e9664495%3A0x42e2e8d3618d3b2d!2sSarvottam%20Nagar%20Society%2C%20Navrangpura%2C%20Ahmedabad%2C%20Gujarat%20380014!5e0!3m2!1sen!2sin!4v1711432108040!5m2!1sen!2sin"
-                  width="100%" 
-                  height="100%" 
-                  style={{border: 0}}
-                  allowFullScreen 
+            </motion.div>
+
+            <motion.div 
+              className="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-bold mb-6 text-gray-800 border-b border-gray-200 pb-4">Visit Our Office</h3>
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.939666829574!2d72.54961597500275!3d23.03331447913361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84c618f86fc3%3A0x8b6bb7e2c2c1c89e!2sSarvottam%20Nagar%20Society%2C%20Navrangpura%2C%20Ahmedabad%2C%20Gujarat%20380014!5e0!3m2!1sen!2sin!4v1711460431789!5m2!1sen!2sin"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
-              <div className="mt-6">
-                <h4 className="font-semibold mb-2 text-gray-800 dark:text-white">Business Hours</h4>
-                <div className="grid grid-cols-2 gap-2 text-gray-600 dark:text-gray-300">
-                  <div>Monday - Friday</div>
-                  <div>9:00 AM - 6:00 PM</div>
-                  <div>Saturday</div>
-                  <div>10:00 AM - 4:00 PM</div>
-                  <div>Sunday</div>
-                  <div>Closed</div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

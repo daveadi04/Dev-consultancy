@@ -26,7 +26,7 @@ const ServicesTab = () => {
       title: 'Motilal Oswal',
       content: [
         "Authorised Sub-Broker – Trusted and SEBI-registered for secure investments.",
-        "Regulatory Compliance – Registered with SEBI (INZ0001588) and CDSL/NSDL (IN-DP-16-2015).",
+        "Regulatory Compliance – Registered with SEBI.",
         "Motilal Oswal Financial Services Ltd. (MOFSL) – A leading financial services firm.",
         "'Buy Right, Sit Tight' – Long-term wealth creation through strategic investments.",
         "'Think Equity, Think Motilal' – Expertise in equity markets and investment solutions.",
@@ -37,7 +37,7 @@ const ServicesTab = () => {
         "Mutual Funds – Diverse investment options across asset classes for all investors.",
         "Private Equity – Strategic investments in high-potential startups and enterprises."
       ],
-      email: 'devdave_2012@gmail.com',
+      email: 'devdave2012@gmail.com',
       phone: '+91 8655364812',
       location: '2HW2+8R2, Memnagar Rd, Sarvottam Nagar Society, Navrangpura, Ahmedabad, Gujarat 380014, India',
       accountLink: 'http://mosl.co/UzC4TcbJJu',
@@ -53,7 +53,7 @@ const ServicesTab = () => {
     "Smart Retirement Planning – Secure your future with SIP before retirement.",
     "Post-Retirement Financial Stability – Enjoy steady income with SWP (Systematic Withdrawal Plan)."
       ],
-      email: 'devdave_2012@gmail.com',
+      email: 'devdave2012@gmail.com',
       phone: '+91 8655364812',
       location: '2HW2+8R2, Memnagar Rd, Sarvottam Nagar Society, Navrangpura, Ahmedabad, Gujarat 380014, India',
       motto: 'LUMPSUM SIP SAHI HAI PER SEVA Investment BHI JARURI HAI'
@@ -70,7 +70,7 @@ const ServicesTab = () => {
     "Secure Insurance",
     "Equity Trading"
       ],
-      email: 'devdave_2012@gmail.com',
+      email: 'devdave2012@gmail.com',
       phone: '+91 8655364812',
       location: '2HW2+8R2, Memnagar Rd, Sarvottam Nagar Society, Navrangpura, Ahmedabad, Gujarat 380014, India',
       accountLink: 'https://angel-one.onelink.me/Wjgr/0eoe4gto'

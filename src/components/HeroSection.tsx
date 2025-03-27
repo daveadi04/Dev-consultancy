@@ -135,7 +135,7 @@ const HeroSection = () => {
               Experience the difference between making money and building lasting wealth.
             </motion.p>
 
-            <motion.div 
+            {/* <motion.div 
               className="glass-card p-6 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -146,7 +146,7 @@ const HeroSection = () => {
                 SEBI Registration No: {credentials.registration} ({credentials.exchanges})<br />
                 Depository: {credentials.depository}
               </p>
-            </motion.div>
+            </motion.div> */}
             
             <motion.div 
               className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"

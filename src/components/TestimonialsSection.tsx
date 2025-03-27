@@ -10,7 +10,7 @@ const TestimonialsSection = () => {
       id: 1,
       name: "Priya Mehta",
       position: "Business Owner",
-      image: "https://randomuser.me/api/portraits/women/23.jpg",
+      image: "👩‍💼",
       quote: "Dev Consultancy helped me diversify my investment portfolio, resulting in a 32% increase in returns within the first year. Their expertise in market analysis and personalized approach sets them apart.",
       rating: 5
     },
@@ -18,7 +18,7 @@ const TestimonialsSection = () => {
       id: 2,
       name: "Vikram Singh",
       position: "IT Professional",
-      image: "https://randomuser.me/api/portraits/men/54.jpg",
+      image: "👨‍💻",
       quote: "As a first-time investor, I was nervous about entering the stock market. Dev's patient guidance and educational approach helped me build a strong foundation. Now I'm confidently growing my investments with their support.",
       rating: 5
     },
@@ -26,7 +26,7 @@ const TestimonialsSection = () => {
       id: 3,
       name: "Neha Sharma",
       position: "Doctor",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      image: "👩‍⚕️",
       quote: "The team at Dev Consultancy provided me with a tax-efficient investment strategy that perfectly aligned with my long-term retirement goals. Their attention to detail and proactive updates keep me informed and confident.",
       rating: 5
     },
@@ -34,7 +34,7 @@ const TestimonialsSection = () => {
       id: 4,
       name: "Arjun Patel",
       position: "Entrepreneur",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      image: "👨‍💼",
       quote: "After trying several financial advisors, I found Dev Consultancy to be truly exceptional. Their research-backed approach to stock selection and portfolio management has consistently outperformed my previous investments.",
       rating: 5
     },
@@ -42,7 +42,7 @@ const TestimonialsSection = () => {
       id: 5,
       name: "Anjali Gupta",
       position: "Software Engineer",
-      image: "https://randomuser.me/api/portraits/women/67.jpg",
+      image: "👩‍💻",
       quote: "I've been working with Dev for over 3 years, and I'm impressed by their ability to adapt strategies to changing market conditions. My SIP portfolio has shown remarkable stability even during market volatility.",
       rating: 4
     }
