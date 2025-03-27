@@ -7,27 +7,26 @@ import {
   FaRegLightbulb, 
   FaUsers
 } from 'react-icons/fa';
-import Image from 'next/image';
 
 const WhyChooseUs = () => {
   const reasons = [
     {
-      icon: <FaUserTie size={40} className="text-blue-700" />,
+      icon: <FaUserTie size={40} className="text-blue-600" />,
       title: "Expertise & Experience",
       description: "With over 20 years of experience in Angel Broking & Motilal Oswal, we bring deep industry knowledge and market expertise to every client relationship."
     },
     {
-      icon: <FaRegLightbulb size={40} className="text-blue-700" />,
+      icon: <FaRegLightbulb size={40} className="text-blue-600" />,
       title: "Personalized Investment Strategies",
       description: "We develop customized investment plans tailored to your specific financial goals, risk tolerance, and time horizons."
     },
     {
-      icon: <FaChartLine size={40} className="text-blue-700" />,
+      icon: <FaChartLine size={40} className="text-blue-600" />,
       title: "Market Insights & Research",
       description: "Our data-driven approach and continuous market research ensure that your investment decisions are backed by thorough analysis."
     },
     {
-      icon: <FaUsers size={40} className="text-blue-700" />,
+      icon: <FaUsers size={40} className="text-blue-600" />,
       title: "Client Satisfaction",
       description: "Our track record of client success stories and high retention rates speaks to our commitment to delivering exceptional results."
     }
@@ -41,11 +40,11 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why-choose-us" className="py-20 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900">
+    <section id="why-choose-us" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <motion.h2 
-            className="text-3xl font-bold mb-2 text-blue-700"
+            className="text-4xl font-bold mb-4 text-blue-900"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -54,14 +53,14 @@ const WhyChooseUs = () => {
             Why Choose Us
           </motion.h2>
           <motion.div 
-            className="w-20 h-1 bg-yellow-500 mx-auto mb-6"
+            className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-6"
             initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
+            whileInView={{ width: 96 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           ></motion.div>
           <motion.p 
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -71,37 +70,36 @@ const WhyChooseUs = () => {
           </motion.p>
         </div>
 
-        <div className="relative h-96 w-full mb-16">
-          <Image
-            src="/assets/trading.jpg"
-            alt="Trading platform"
-            fill
-            className="object-cover rounded-lg"
-          />
-        </div>
-
         {/* Reasons Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {reasons.map((reason, index) => (
             <motion.div 
               key={index}
-              className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg flex"
+              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="mr-6 mt-1">{reason.icon}</div>
-              <div>
-                <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-white">{reason.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{reason.description}</p>
+              <div className="flex items-start">
+                <div className="mr-6 p-3 bg-blue-50 rounded-lg">{reason.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">{reason.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{reason.description}</p>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* Stats Section */}
-        <div className="bg-blue-700 rounded-xl p-10 shadow-xl">
+        <motion.div 
+          className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-10 shadow-xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div 
@@ -117,33 +115,26 @@ const WhyChooseUs = () => {
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Testimonial Highlight */}
+        {/* Client Quote */}
         <motion.div 
-          className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg text-center"
+          className="mt-16 bg-white p-8 rounded-xl shadow-lg text-center max-w-4xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           <div className="mb-6">
-            <svg className="h-12 w-12 text-yellow-500 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
+            <span className="text-5xl text-yellow-500">👨‍💼</span>
           </div>
-          <blockquote className="text-2xl italic font-medium text-gray-700 dark:text-gray-200 mb-6">
-            &quot;Dev Consultancy transformed my investment approach. Their personalized strategies have consistently delivered results beyond my expectations.&quot;
+          <blockquote className="text-2xl italic font-medium text-gray-700 mb-6">
+            &ldquo;Dev Consultancy transformed my investment approach. Their personalized strategies have consistently delivered results beyond my expectations.&rdquo;
           </blockquote>
           <div className="flex items-center justify-center">
-            <img 
-              src="https://randomuser.me/api/portraits/men/32.jpg" 
-              alt="Client" 
-              className="h-12 w-12 rounded-full border-2 border-blue-500 mr-4"
-            />
-            <div className="text-left">
-              <div className="font-semibold text-gray-800 dark:text-white">Rajesh Sharma</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Client for 5 years</div>
+            <div className="text-center">
+              <div className="font-semibold text-gray-900">Rajesh Sharma</div>
+              <div className="text-sm text-gray-500">Client for 5 years</div>
             </div>
           </div>
         </motion.div>

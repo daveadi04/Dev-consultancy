@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
-import Image from 'next/image';
 
 const TestimonialsSection = () => {
   const testimonials = [
