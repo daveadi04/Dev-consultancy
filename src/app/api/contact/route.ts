@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { fullName, email, phone, service, message } = body;
 
-    const { data, error } = await resend.emails.send({
+    await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: ['adityadave004@gmail.com'],
       subject: `New Consultation Request from ${fullName}`,
@@ -29,14 +29,6 @@ export async function POST(req: Request) {
         </div>
       `
     });
-
-    if (error) {
-      console.error('Error sending email:', error);
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      );
-    }
 
     return NextResponse.json(
       { message: 'Email sent successfully' },

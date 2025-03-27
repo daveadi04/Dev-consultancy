@@ -72,8 +72,8 @@ const MarketInsights = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-blue-500 mb-4">
             Live Market Updates
           </h2>
-          <p className="text-gray-300 text-lg">
-            Real-time updates from India's leading market indices
+          <p className="text-gray-600 mb-8">
+            Stay updated with India&apos;s leading market indices and their real-time performance.
           </p>
         </motion.div>
 

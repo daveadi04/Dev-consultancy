@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
+import Image from 'next/image';
 
 const TestimonialsSection = () => {
   const testimonials = [
@@ -101,11 +102,9 @@ const TestimonialsSection = () => {
         >
           <div className="md:flex">
             <div className="md:shrink-0 bg-blue-700 p-8 md:p-12 flex flex-col justify-center items-center">
-              <img 
-                className="h-32 w-32 rounded-full border-4 border-white object-cover" 
-                src={testimonials[activeIndex].image} 
-                alt={testimonials[activeIndex].name} 
-              />
+              <div className="flex items-center justify-center text-5xl mb-4">
+                {testimonials[activeIndex].image}
+              </div>
               <div className="mt-4 text-center">
                 <div className="text-xl font-bold text-white">{testimonials[activeIndex].name}</div>
                 <div className="text-blue-200">{testimonials[activeIndex].position}</div>

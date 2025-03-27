@@ -113,27 +113,14 @@ const HeroSection = () => {
                   Dev Consultancy
                 </h2>
               </div>
-              <h1 className="heading-1 text-white mb-6 leading-tight">
-                Transform Your Financial Future with{' '}
-                <span className="gradient-text">
-                  Strategic Investments
-                </span>{' '}
-                &{' '}
-                <span className="gradient-text">
-                  Expert Guidance
-                </span>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
+                Transform Your Financial Future with Expert Guidance
               </h1>
             </motion.div>
             
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              "Buy Right, Sit Tight" - Your pathway to sustainable wealth creation. 
-              Experience the difference between making money and building lasting wealth.
-            </motion.p>
+            <p className="text-lg md:text-xl text-gray-700 mb-8">
+              &ldquo;Buy Right, Sit Tight&rdquo; - Your trusted partner in building lasting wealth through strategic investments and expert guidance.
+            </p>
 
             {/* <motion.div 
               className="glass-card p-6 mb-8"
@@ -174,19 +161,22 @@ const HeroSection = () => {
               </Link>
             </motion.div>
 
-            <motion.div 
-              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              {services.map(({ icon: Icon, title }, index) => (
-                <div key={title} className="glass-card p-4 text-center">
-                  <Icon className="text-yellow-400 text-2xl mx-auto mb-2" />
-                  <p className="text-white text-sm">{title}</p>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+              {services.map((service) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {service.icon}
+                  <h3 className="text-xl font-semibold mt-4 mb-2">{service.title}</h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
 
             <motion.div 
               className="mt-8 flex justify-center gap-6"
