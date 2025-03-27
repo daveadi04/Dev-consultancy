@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaClock, FaTag } from 'react-icons/fa';
+import Image from 'next/image';
 
 const BlogSection = () => {
   const blogPosts = [
@@ -76,11 +77,12 @@ const BlogSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              <div className="relative h-48 w-full mb-6">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover rounded-lg hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="p-6">

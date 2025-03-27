@@ -13,10 +13,26 @@ const HeroSection = () => {
   };
 
   const services = [
-    { icon: FaChartLine, title: "Portfolio Management Services (PMS)" },
-    { icon: FaChartBar, title: "Alternative Investment Fund (AIF)" },
-    { icon: FaUserTie, title: "Professional Fund Management" },
-    { icon: FaShieldAlt, title: "Mutual Funds" }
+    {
+      icon: <FaChartLine className="text-blue-600 text-3xl" />,
+      title: "Portfolio Management Services (PMS)",
+      description: "Expert portfolio management tailored to your goals"
+    },
+    {
+      icon: <FaChartBar className="text-blue-600 text-3xl" />,
+      title: "Alternative Investment Fund (AIF)",
+      description: "Diverse investment opportunities for growth"
+    },
+    {
+      icon: <FaUserTie className="text-blue-600 text-3xl" />,
+      title: "Professional Fund Management",
+      description: "Strategic fund management by experts"
+    },
+    {
+      icon: <FaShieldAlt className="text-blue-600 text-3xl" />,
+      title: "Mutual Funds",
+      description: "Curated mutual fund solutions"
+    }
   ];
 
   return (
@@ -161,7 +177,7 @@ const HeroSection = () => {
               </Link>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
               {services.map((service) => (
                 <motion.div
                   key={service.title}

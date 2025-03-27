@@ -7,6 +7,7 @@ import {
   FaRegLightbulb, 
   FaUsers
 } from 'react-icons/fa';
+import Image from 'next/image';
 
 const WhyChooseUs = () => {
   const reasons = [
@@ -68,6 +69,15 @@ const WhyChooseUs = () => {
           >
             Discover the advantages of partnering with Dev Consultancy for your financial journey
           </motion.p>
+        </div>
+
+        <div className="relative h-96 w-full mb-16">
+          <Image
+            src="/assets/trading.jpg"
+            alt="Trading platform"
+            fill
+            className="object-cover rounded-lg"
+          />
         </div>
 
         {/* Reasons Grid */}
