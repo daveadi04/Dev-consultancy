@@ -14,22 +14,22 @@ const HeroSection = () => {
 
   const services = [
     {
-      icon: <FaChartLine className="text-blue-600 text-3xl" />,
+      icon: <FaChartLine className="text-blue-600 text-2xl sm:text-3xl" />,
       title: "Portfolio Management Services (PMS)",
       description: "Expert portfolio management tailored to your goals"
     },
     {
-      icon: <FaChartBar className="text-blue-600 text-3xl" />,
+      icon: <FaChartBar className="text-blue-600 text-2xl sm:text-3xl" />,
       title: "Alternative Investment Fund (AIF)",
       description: "Diverse investment opportunities for growth"
     },
     {
-      icon: <FaUserTie className="text-blue-600 text-3xl" />,
+      icon: <FaUserTie className="text-blue-600 text-2xl sm:text-3xl" />,
       title: "Professional Fund Management",
       description: "Strategic fund management by experts"
     },
     {
-      icon: <FaShieldAlt className="text-blue-600 text-3xl" />,
+      icon: <FaShieldAlt className="text-blue-600 text-2xl sm:text-3xl" />,
       title: "Mutual Funds",
       description: "Curated mutual fund solutions"
     }
@@ -50,7 +50,7 @@ const HeroSection = () => {
               <span>Dev</span> <span>Consultancy</span>
             </div>
           </motion.div>
-          <nav className="nav-links">
+          <nav className="nav-links hidden md:flex">
             {['Home', 'About', 'Services', 'Why Choose Us', 'Testimonials', 'Blog', 'Contact'].map((item, index) => (
               <motion.div
                 key={item}
@@ -71,12 +71,18 @@ const HeroSection = () => {
               </motion.div>
             ))}
           </nav>
+          {/* Mobile Menu Button */}
+          <button className="md:hidden text-white">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </header>
 
       <section 
         id="home" 
-        className="relative min-h-screen flex items-center overflow-hidden pt-20"
+        className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-20"
       >
         {/* Dynamic Background with Multiple Layers */}
         <div className="absolute inset-0 z-0">
@@ -115,41 +121,28 @@ const HeroSection = () => {
           ></div>
         </div>
 
-        <div className="container mx-auto px-4 z-10">
+        <div className="container mx-auto px-4 sm:px-6 z-10">
           <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-8"
+              className="mb-6 md:mb-8"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <FaRupeeSign className="text-yellow-400 text-3xl animate-float" />
-                <h2 className="text-yellow-400 text-xl md:text-2xl font-semibold tracking-wide">
+              <div className="flex items-center gap-3 mb-3 md:mb-4">
+                <FaRupeeSign className="text-yellow-400 text-2xl sm:text-3xl animate-float" />
+                <h2 className="text-yellow-400 text-lg sm:text-xl md:text-2xl font-semibold tracking-wide">
                   Dev Consultancy
                 </h2>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
                 Transform Your Financial Future with Expert Guidance
               </h1>
             </motion.div>
             
-            <p className="text-lg md:text-xl text-gray-700 mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8">
               &ldquo;Buy Right, Sit Tight&rdquo; - Your trusted partner in building lasting wealth through strategic investments and expert guidance.
             </p>
-
-            {/* <motion.div 
-              className="glass-card p-6 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <p className="text-yellow-400 font-semibold mb-2">Registration Details:</p>
-              <p className="text-white text-sm">
-                SEBI Registration No: {credentials.registration} ({credentials.exchanges})<br />
-                Depository: {credentials.depository}
-              </p>
-            </motion.div> */}
             
             <motion.div 
               className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
@@ -162,7 +155,7 @@ const HeroSection = () => {
                 smooth={true}
                 duration={500}
                 offset={-80}
-                className="btn-primary"
+                className="btn-primary w-full sm:w-auto text-sm md:text-base"
               >
                 Open Your Account
               </Link>
@@ -171,57 +164,57 @@ const HeroSection = () => {
                 smooth={true}
                 duration={500}
                 offset={-80}
-                className="btn-secondary"
+                className="btn-secondary w-full sm:w-auto text-sm md:text-base"
               >
                 Explore Investment Solutions
               </Link>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-8 md:mt-12">
               {services.map((service) => (
                 <motion.div
                   key={service.title}
-                  className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-xl"
+                  className="bg-white/90 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-xl"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
                   {service.icon}
-                  <h3 className="text-xl font-semibold mt-4 mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+                  <h3 className="text-lg md:text-xl font-semibold mt-3 md:mt-4 mb-2">{service.title}</h3>
+                  <p className="text-sm md:text-base text-gray-600">{service.description}</p>
                 </motion.div>
               ))}
             </div>
 
             <motion.div 
-              className="mt-8 flex justify-center gap-6"
+              className="mt-6 md:mt-8 flex justify-center gap-4 md:gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
               <a href={`mailto:${credentials.email}`} className="text-white hover:text-yellow-400 transition-colors">
-                <FaEnvelope className="text-2xl" />
+                <FaEnvelope className="text-xl md:text-2xl" />
               </a>
               <a href="#" className="text-white hover:text-yellow-400 transition-colors">
-                <FaLinkedin className="text-2xl" />
+                <FaLinkedin className="text-xl md:text-2xl" />
               </a>
               <a href="#" className="text-white hover:text-yellow-400 transition-colors">
-                <FaTwitter className="text-2xl" />
+                <FaTwitter className="text-xl md:text-2xl" />
               </a>
               <a href="#" className="text-white hover:text-yellow-400 transition-colors">
-                <FaWhatsapp className="text-2xl" />
+                <FaWhatsapp className="text-xl md:text-2xl" />
               </a>
             </motion.div>
           </div>
         </div>
 
         {/* Enhanced Decorative Elements */}
-        <div className="absolute right-0 top-1/4 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl animate-pulse-glow"></div>
-        <div className="absolute left-1/4 bottom-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse-glow delay-150"></div>
+        <div className="absolute right-0 top-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-yellow-400/10 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute left-1/4 bottom-1/4 w-48 sm:w-64 h-48 sm:h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse-glow delay-150"></div>
         
         <motion.div 
-          className="absolute right-10 top-1/3 text-yellow-400 text-6xl opacity-20"
+          className="absolute right-4 sm:right-10 top-1/3 text-yellow-400 text-4xl sm:text-6xl opacity-20"
           animate={{ 
             y: [0, -20, 0],
             rotate: [0, 5, 0],

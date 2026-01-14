@@ -52,7 +52,7 @@ const Footer = () => {
           </div>
 
           {/* Our Services */}
-          <div>
+          {/* <div>
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2">
               <li>
@@ -81,7 +81,7 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact Us */}
           <div>
